@@ -1,35 +1,39 @@
 PROGRAM Digits(INPUT, OUTPUT);
 VAR
-  I, Sum: INTEGER;
-PROCEDURE ReadDigit(VAR Inf: TEXT; VAR Int: INTEGER);
+  Digit, Sum: INTEGER;
+PROCEDURE ReadDigit(VAR FIn: TEXT; VAR Digit: INTEGER);
 VAR
   Ch: CHAR;
 BEGIN{ReadDigit}
-  READ(Inf, Ch);
-  IF (Ch >= '0') AND (Ch <= '9')
+  Digit := -1;
+  IF NOT EOLN(FIn)
   THEN
-    Int := Ord(Ch) - 48
-  ELSE
-    Int := -1
+    BEGIN
+      READ(FIn, Ch);
+      IF (Ch = '0') THEN Digit := 0 ELSE
+      IF (Ch = '1') THEN Digit := 1 ELSE
+      IF (Ch = '2') THEN Digit := 2 ELSE
+      IF (Ch = '3') THEN Digit := 3 ELSE
+      IF (Ch = '4') THEN Digit := 4 ELSE
+      IF (Ch = '5') THEN Digit := 5 ELSE
+      IF (Ch = '6') THEN Digit := 6 ELSE
+      IF (Ch = '7') THEN Digit := 7 ELSE
+      IF (Ch = '8') THEN Digit := 8 ELSE
+      IF (Ch = '9') THEN Digit := 9
+    END
 END;{ReadDigit}
 BEGIN{Digits}
   Sum := 0;
-  I := 0;
-  WHILE NOT EOLN(INPUT) AND (I <> -1)
+  Digit := 0;
+  WHILE (Digit <> -1)
   DO
     BEGIN
-      IF NOT EOLN(INPUT)
-      THEN
-        BEGIN
-          ReadDigit(INPUT, I);
-          IF I <> (-1)
-          THEN
-            Sum := Sum + I 
-        END
+      Sum := Sum + Digit;
+      ReadDigit(INPUT, Digit) 
     END;
-  IF Sum = 0
-  THEN
-    WRITE('-1')
-  ELSE
-    WRITELN('Сумма всех цифр в файле равна ', Sum)
+    IF (Sum = 0)
+    THEN
+      WRITELN('-1')
+    ELSE
+      WRITELN(Sum)
 END.{Digits}
