@@ -1,6 +1,4 @@
 PROGRAM ReadNumberProgram(INPUT, OUTPUT);
-CONST
-  MAXINT = 32768;
 VAR
   I: INTEGER;
 PROCEDURE ReadDigit(VAR FileIn: TEXT; VAR Digit: INTEGER);
@@ -28,12 +26,14 @@ PROCEDURE ReadNumber(VAR FileIn: TEXT; VAR Number: INTEGER);
 CONST
   MAXINT = 32768;
 VAR
+  State: BOOLEAN;
   TempDigit: INTEGER;
 BEGIN{ReadNumber}
   Number := 0;
-  WHILE (TempDigit <> -1) AND NOT(EOLN(FileIn)) AND (Number <> -1)
+  WHILE (TempDigit <> -1) AND (NOT EOLN(FileIn)) AND (Number <> -1)
   DO
    BEGIN
+     State := FALSE;
      ReadDigit(FileIn, TempDigit);
      IF (Number <= (MAXINT DIV 10))
      THEN
@@ -41,12 +41,15 @@ BEGIN{ReadNumber}
          Number := Number * 10; {Увеличиваем разряд}
          IF (MAXINT - Number >= TempDigit)
          THEN
-           Number := Number + TempDigit {Добавляем цифру}
-         ELSE
-           Number := -1
+           State := TRUE
        END
      ELSE
-       Number := -1 
+       State := FALSE;
+    IF (State) 
+    THEN
+      Number := Number + TempDigit
+    ELSE
+      Number := -1 
    END;
 END;{ReadNumber}
 BEGIN{ReadNumberProgram}
