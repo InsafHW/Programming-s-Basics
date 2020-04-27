@@ -38,7 +38,7 @@ BEGIN{ReadNumber}
      IF (Number <= (MAXINT DIV 10))
      THEN
        BEGIN
-         Number := Number * 10; {Увеличиваем разряд}
+         Number := Number * 10; {Увеличиваем разаряд}
          IF (MAXINT - Number >= TempDigit)
          THEN
            State := TRUE
