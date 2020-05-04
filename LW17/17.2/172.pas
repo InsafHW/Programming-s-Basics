@@ -35,7 +35,7 @@ BEGIN{ReadNumber}
   WHILE (TempDigit <> -1) AND (Number <> -1)
   DO
    BEGIN
-     IF (Number * 10 + TempDigit <= MAXINT)             
+     IF (Number <= MAXINT DIV 10) AND (MAXINT - Number * 10 >= TempDigit)             
      THEN
        Number := Number * 10 + TempDigit
      ELSE
