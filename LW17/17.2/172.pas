@@ -35,14 +35,14 @@ BEGIN{ReadNumber}
   WHILE (TempDigit <> -1) AND (Number <> -1)
   DO
    BEGIN
-     IF (Number * 10 + TempDigit > MAXINT)
+     IF (Number * 10 + TempDigit <= MAXINT)             
      THEN
+       Number := Number * 10 + TempDigit
+     ELSE
        BEGIN
          Overflow := TRUE;
          Number := -1
-       END
-     ELSE
-       Number := Number * 10 + TempDigit;
+       END;
      ReadDigit(FileIn, TempDigit)
    END;
 END;{ReadNumber}
