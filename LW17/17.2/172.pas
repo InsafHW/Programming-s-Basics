@@ -26,30 +26,24 @@ PROCEDURE ReadNumber(VAR FileIn: TEXT; VAR Number: INTEGER);
 CONST
   MAXINT = 32768;
 VAR
-  State: BOOLEAN;
+  Overflow: BOOLEAN;
   TempDigit: INTEGER;
 BEGIN{ReadNumber}
+  Overflow := FALSE;
   Number := 0;
-  WHILE (TempDigit <> -1) AND (NOT EOLN(FileIn)) AND (Number <> -1)
+  ReadDigit(FileIn, TempDigit);
+  WHILE (TempDigit <> -1) AND (Number <> -1)
   DO
    BEGIN
-     State := FALSE;
-     ReadDigit(FileIn, TempDigit);
-     IF (Number <= (MAXINT DIV 10))
+     IF (Number * 10 + TempDigit > MAXINT)
      THEN
        BEGIN
-         Number := Number * 10;
-         IF (MAXINT - Number >= TempDigit)
-         THEN
-           State := TRUE
+         Overflow := TRUE;
+         Number := -1
        END
      ELSE
-       State := FALSE;
-    IF (State) 
-    THEN
-      Number := Number + TempDigit
-    ELSE
-      Number := -1 
+       Number := Number * 10 + TempDigit;
+     ReadDigit(FileIn, TempDigit)
    END;
 END;{ReadNumber}
 BEGIN{ReadNumberProgram}
