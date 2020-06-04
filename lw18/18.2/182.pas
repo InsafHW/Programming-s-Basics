@@ -11,33 +11,18 @@ VAR
   Ave, TotalScore, ClassTotal: INTEGER;
   StudentName: TEXT;
   Ch: CHAR;
-  
-PROCEDURE ReadName(VAR FIn: TEXT; VAR FOut: TEXT);
+ 
+PROCEDURE CopyName(VAR FIn: TEXT; VAR FOut: TEXT);
 VAR
-  Ch: CHAR;
-BEGIN{ReadName}
-  REWRITE(FOut);
+ Ch: CHAR;
+BEGIN
   WHILE NOT EOLN(FIn)
   DO
     BEGIN
       READ(FIn, Ch);
       WRITE(FOut, Ch)
-    END;
-  WRITELN(FOut)
-END;{ReadName}
-
-PROCEDURE WriteName(VAR FIn: TEXT; VAR FOut: TEXT);
-VAR
-  Ch: CHAR;
-BEGIN{WriteName}
-  RESET(FIn);
-  WHILE NOT EOLN(FIn)
-  DO
-    BEGIN
-      READ(FIn, Ch);
-      WRITE(FOut, Ch)
-    END;
-END;{WriteName}
+    END
+END;
 
 BEGIN{AverageScore}
   ClassTotal := 0;
@@ -46,7 +31,8 @@ BEGIN{AverageScore}
   DO
     BEGIN
       WRITELN('Enter student name:');
-      ReadName(INPUT, StudentName);
+      REWRITE(StudentName);
+      CopyName(INPUT, StudentName);
       READLN(INPUT);
       RESET(StudentName);
       WRITE('Enter student scores: ');   
@@ -70,7 +56,8 @@ BEGIN{AverageScore}
       Ave := TotalScore DIV NumberOfScores;
       ClassTotal := ClassTotal + TotalScore;
       Student := Student + 1;
-      WriteName(StudentName, OUTPUT);
+      RESET(StudentName);
+      CopyName(StudentName, OUTPUT);
       IF Ave MOD 10 >= 5
       THEN
         WRITELN(' ', Ave DIV 10 + 1)
