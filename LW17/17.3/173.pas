@@ -50,7 +50,7 @@ BEGIN{ReadNumber}
 END;{ReadNumber}
 BEGIN{ReadNumberProgram}
   Overflow := FALSE;
-  WRITELN('Введите целые числа через пробел:');
+  WRITELN('Enter integer digits with spacebar:');
   ReadNumber(INPUT, Number);
   Sum := Number;
   Min := Number;
@@ -79,11 +79,11 @@ BEGIN{ReadNumberProgram}
       ELSE
         Overflow := TRUE
     END;
-  WRITELN('Минимальное число - ', Min);
-  WRITELN('Максимальное число - ', Max);
+  WRITELN('Min digit - ', Min);
+  WRITELN('Max digit - ', Max);
   IF Overflow
   THEN
-    WRITELN('Сумма вышла за границы')
+    WRITELN('Sum overflow')
   ELSE
-    WRITELN('Среднее: ', (Sum DIV Count), '.', (Sum MOD Count));
+    WRITELN('Average: ', (Sum DIV Count), '.', (Sum MOD Count));
 END.
