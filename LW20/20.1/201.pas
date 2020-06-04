@@ -8,7 +8,7 @@ VAR
   I: INTEGER;
   LetterPosition: Matrix;
   
-PROCEDURE InitializeMatrix(VAR F: TEXT; VAR Matrix : Matrix );
+PROCEDURE PrintX(VAR F: TEXT; VAR Matrix : Matrix );
 VAR
   Ch: CHAR;
 BEGIN{PrintX}
@@ -33,17 +33,13 @@ BEGIN{PrintX}
       THEN
         Matrix  := [1, 2, 3, 4, 5, 6, 11, 12, 13, 14, 15, 16, 21];
     END;
-END;{PrintX}
-
-BEGIN{LetterX} 
-  InitializeMatrix(INPUT, LetterPosition);
-  IF LetterPosition <> []
+  IF Matrix <> []
   THEN
     BEGIN
       FOR I := Min TO Max
       DO
         BEGIN
-          IF (I IN LetterPosition)
+          IF (I IN Matrix)
           THEN
             WRITE(OUTPUT, 'X')
           ELSE
@@ -55,4 +51,8 @@ BEGIN{LetterX}
     END
   ELSE
     WRITELN('Данный символ не зарегистрирован')
+END;{PrintX}
+
+BEGIN{LetterX} 
+  PrintX(INPUT, LetterPosition)
 END.
