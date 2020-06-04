@@ -3,7 +3,7 @@ CONST
   Len = 20;
 TYPE
   Str = ARRAY [1 .. Len] OF 'A' .. 'Z';
-  Chiper = ARRAY ['A' .. 'Z'] OF CHAR;
+  Chiper = ARRAY [' ' .. 'Z'] OF CHAR;
 VAR
   Msg: Str;
   Code: Chiper;
@@ -36,24 +36,21 @@ BEGIN {Initialize}
   Code['W'] := 'D';
   Code['X'] := 'C';
   Code['Y'] := 'B';
-  Code['Z'] := 'A'
+  Code['Z'] := 'A';
+  Code[' '] := '*'
 END;  {Initialize}
  
-PROCEDURE Encode(VAR S: Str; Length: INTEGER);
+PROCEDURE Encode(VAR S: Str);
 VAR
   Index: 1 .. Len;
 BEGIN {Encode}
-  FOR Index := 1 TO Length
+  FOR Index := 1 TO StrLength
   DO
-    IF S[Index] IN ['A' .. 'Z']
+    IF S[Index] IN [' ' .. 'Z']
     THEN
       WRITE(Code[S[Index]])
     ELSE
-      IF S[Index] = ' '
-      THEN
-        WRITE('*')
-      ELSE
-        WRITE(S[Index]);
+      WRITE(S[Index]);
   WRITELN
 END;  {Encode}
  
@@ -73,6 +70,6 @@ BEGIN {Encryption}
         END;      
       READLN; 
       WRITELN;      
-      Encode(Msg, Len)
+      Encode(Msg)
     END
 END.  {Encryption}
