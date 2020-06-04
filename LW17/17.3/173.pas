@@ -31,7 +31,6 @@ VAR
   Overflow: BOOLEAN;
   TempDigit: INTEGER;
 BEGIN{ReadNumber}
-  Overflow := FALSE;
   Number := 0;
   ReadDigit(FileIn, TempDigit);
   WHILE (TempDigit <> -1) AND (Number <> -1)
@@ -41,10 +40,7 @@ BEGIN{ReadNumber}
      THEN
        Number := Number * 10 + TempDigit
      ELSE
-       BEGIN
-         Overflow := TRUE;
-         Number := -1
-       END;
+       Number := -1;
      ReadDigit(FileIn, TempDigit)
    END;
 END;{ReadNumber}
