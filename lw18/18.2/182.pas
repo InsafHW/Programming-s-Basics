@@ -11,23 +11,45 @@ VAR
   Ave, TotalScore, ClassTotal: INTEGER;
   StudentName: TEXT;
   Ch: CHAR;
+  
+PROCEDURE ReadName(VAR FIn: TEXT; VAR FOut: TEXT);
+VAR
+  Ch: CHAR;
+BEGIN{ReadName}
+  REWRITE(FOut);
+  WHILE NOT EOLN(FIn)
+  DO
+    BEGIN
+      READ(FIn, Ch);
+      WRITE(FOut, Ch)
+    END;
+  WRITELN(FOut)
+END;{ReadName}
+
+PROCEDURE WriteName(VAR FIn: TEXT; VAR FOut: TEXT);
+VAR
+  Ch: CHAR;
+BEGIN{WriteName}
+  RESET(FIn);
+  WHILE NOT EOLN(FIn)
+  DO
+    BEGIN
+      READ(FIn, Ch);
+      WRITE(FOut, Ch)
+    END;
+END;{WriteName}
+
 BEGIN{AverageScore}
   ClassTotal := 0;
   Student := 0;
   WHILE Student < ClassSize
   DO
     BEGIN
-      WRITELN('Ââåäèòå ôàìèëèþ ñòóäåíòà:');
-      REWRITE(StudentName);
-      WHILE NOT EOLN(INPUT)
-      DO
-        BEGIN 
-          READ(INPUT, Ch);
-          WRITE(StudentName, Ch)
-        END;
+      WRITELN('‚¢¥¤¨â¥ ä ¬¨«¨î áâã¤¥­â :');
+      ReadName(INPUT, StudentName);
       READLN(INPUT);
       RESET(StudentName);
-      WRITELN('Ââåäèòå îöåíêè ñòóäåíòà:');   
+      WRITE('‚¢¥¤¨â¥ ®æ¥­ª¨ áâã¤¥­â : ');   
       TotalScore := 0;
       WhichScore := 0;
       WHILE WhichScore < NumberOfScores
@@ -36,7 +58,7 @@ BEGIN{AverageScore}
           READ(NextScore);
           IF (NextScore < 0) OR (NextScore > 100)
           THEN
-            WRITELN('Îøèáêà ââîäà, áàëë âûõîäèò çà ãðàíèöû')
+            WRITELN('Žè¨¡ª  ¢¢®¤ , ¡ «« ¢ëå®¤¨â §  £à ­¨æë')
           ELSE
             BEGIN
               TotalScore := TotalScore + NextScore;
@@ -48,12 +70,7 @@ BEGIN{AverageScore}
       Ave := TotalScore DIV NumberOfScores;
       ClassTotal := ClassTotal + TotalScore;
       Student := Student + 1;
-      WHILE NOT EOLN(StudentName)
-      DO
-        BEGIN
-          READ(StudentName, Ch);
-          WRITE(OUTPUT, Ch)
-        END;
+      WriteName(StudentName, OUTPUT);
       IF Ave MOD 10 >= 5
       THEN
         WRITELN(' ', Ave DIV 10 + 1)
