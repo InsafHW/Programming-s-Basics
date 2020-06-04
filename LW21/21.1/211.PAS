@@ -7,8 +7,8 @@ TYPE
 VAR
   Msg: Str;
   Code: Chiper;
-  I: INTEGER;
-  StrLength: 1 .. Len;
+  LenStr: 0 .. Len;
+
 PROCEDURE Initialize(VAR Code: Chiper);
 BEGIN {Initialize}
   Code['A'] := 'Z';
@@ -39,12 +39,12 @@ BEGIN {Initialize}
   Code['Z'] := 'A';
   Code[' '] := '*'
 END;  {Initialize}
- 
-PROCEDURE Encode(VAR S: Str);
+
+PROCEDURE Encode(VAR S: Str; LenStr: INTEGER);
 VAR
   Index: 1 .. Len;
 BEGIN {Encode}
-  FOR Index := 1 TO StrLength
+  FOR Index := 1 TO LenStr
   DO
     IF S[Index] IN [' ' .. 'Z']
     THEN
@@ -53,23 +53,22 @@ BEGIN {Encode}
       WRITE(S[Index]);
   WRITELN
 END;  {Encode}
- 
+
 BEGIN {Encryption}
   Initialize(Code);
-  WHILE NOT EOF(INPUT)
+  WHILE NOT EOF
   DO
     BEGIN
-      I := 0;  
-      WHILE NOT EOLN(INPUT) AND (I < Len)
+      LenStr := 0;
+      WHILE NOT EOLN AND (LenStr < Len)
       DO
         BEGIN
-          I := I + 1; 
-          StrLength := I;
-          READ(INPUT, Msg[I]);
-          WRITE(OUTPUT, Msg[I])
-        END;      
-      READLN; 
-      WRITELN;      
-      Encode(Msg)
+          LenStr := LenStr + 1;
+          READ(Msg[LenStr]);
+          WRITE(Msg[LenStr])
+        END;
+      READLN;
+      WRITELN;
+      Encode(Msg, LenStr)
     END
 END.  {Encryption}
