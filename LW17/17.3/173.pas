@@ -28,7 +28,6 @@ PROCEDURE ReadNumber(VAR FileIn: TEXT; VAR Number: INTEGER);
 CONST
   MAXINT = 32768;
 VAR
-  Overflow: BOOLEAN;
   TempDigit: INTEGER;
 BEGIN{ReadNumber}
   Number := 0;
