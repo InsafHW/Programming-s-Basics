@@ -45,11 +45,11 @@ BEGIN{AverageScore}
   WHILE Student < ClassSize
   DO
     BEGIN
-      WRITELN('Введите фамилию студента:');
+      WRITELN('Enter student name:');
       ReadName(INPUT, StudentName);
       READLN(INPUT);
       RESET(StudentName);
-      WRITE('Введите оценки студента: ');   
+      WRITE('Enter student scores: ');   
       TotalScore := 0;
       WhichScore := 0;
       WHILE WhichScore < NumberOfScores
@@ -58,7 +58,7 @@ BEGIN{AverageScore}
           READ(NextScore);
           IF (NextScore < 0) OR (NextScore > 100)
           THEN
-            WRITELN('Ошибка ввода, балл выходит за границы')
+            WRITELN('Input error, score is out of border')
           ELSE
             BEGIN
               TotalScore := TotalScore + NextScore;
