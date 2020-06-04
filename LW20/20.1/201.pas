@@ -50,7 +50,7 @@ BEGIN{PrintX}
         END      
     END
   ELSE
-    WRITELN('Данный символ не зарегистрирован')
+    WRITELN('This symbol is not registred')
 END;{PrintX}
 
 BEGIN{LetterX} 
