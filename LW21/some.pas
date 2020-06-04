@@ -1,0 +1,12 @@
+PROGRAM Some(INPUT, OUTPUT);
+TYPE
+  Str = FILE OF CHAR;
+VAR
+  S: Str;
+  Ch: CHAR;
+BEGIN
+  ASSIGN(S, 'Text.txt');
+  RESET(S);
+  READ(S, Ch);
+  WRITE(OUTPUT, Ch)
+END.

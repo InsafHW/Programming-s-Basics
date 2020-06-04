@@ -39,11 +39,11 @@ BEGIN {Initialize}
   Code['Z'] := 'A'
 END;  {Initialize}
  
-PROCEDURE Encode(VAR S: Str);
+PROCEDURE Encode(VAR S: Str; Length: INTEGER);
 VAR
   Index: 1 .. Len;
 BEGIN {Encode}
-  FOR Index := 1 TO StrLength
+  FOR Index := 1 TO Length
   DO
     IF S[Index] IN ['A' .. 'Z']
     THEN
@@ -73,6 +73,6 @@ BEGIN {Encryption}
         END;      
       READLN; 
       WRITELN;      
-      Encode(Msg)
+      Encode(Msg, Len)
     END
 END.  {Encryption}
