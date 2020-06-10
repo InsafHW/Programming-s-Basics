@@ -1,5 +1,5 @@
 PROGRAM InsertionSort(INPUT, OUTPUT);
-{Сортирует символы из INPUT}
+{РЎРѕСЂС‚РёСЂСѓРµС‚ СЃРёРјРІРѕР»С‹ РёР· INPUT}
 CONST
   Max = 16;
   ListEnd = 0;
@@ -22,14 +22,14 @@ BEGIN{InsertionSort}
   WHILE NOT EOLN
   DO
     BEGIN
-      {Помещать запись в список, если позволяет пр-во
-      иначе игнорировать и сообщать об ошибке}
+      {РџРѕРјРµС‰Р°С‚СЊ Р·Р°РїРёСЃСЊ РІ СЃРїРёСЃРѕРє, РµСЃР»Рё РїРѕР·РІРѕР»СЏРµС‚ РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРѕ, 
+      РёРЅР°С‡Рµ РёРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ Рё СЃРѕРѕР±С‰Р°С‚СЊ РѕР± РѕС€РёР±РєРµ}
       Index := Index + 1;
       IF Index > Max
       THEN
         BEGIN
           READ(Extra);
-          WRITELN('Сообщение содержит: ', Extra, '. Игнорируем.');
+          WRITELN('РЎРѕРѕР±С‰РµРЅРёРµ СЃРѕРґРµСЂР¶РёС‚: ', Extra, '. РРіРЅРѕСЂРёСЂСѓРµРј.');
         END
       ELSE
         BEGIN
@@ -37,7 +37,7 @@ BEGIN{InsertionSort}
           Found := FALSE;
           Curr := First;
           READ(Arr[Index].Key);
-          {Включение Arr[Index] в связный список}
+          {Р’РєР»СЋС‡РµРЅРёРµ Arr[Index] РІ СЃРІСЏР·Р°РЅРЅС‹Р№ СЃРїРёСЃРѕРє}
           WHILE (Curr <> ListEnd) AND (NOT Found)
           DO
             BEGIN
@@ -58,7 +58,7 @@ BEGIN{InsertionSort}
             Arr[Prev].Next := Index
         END;
     END;
-  {Печать списка начиная с Arr[First}
+  {РџРµС‡Р°С‚СЊ СЃРїРёСЃРєР° РЅР°С‡РёРЅР°СЏ СЃ Arr[First]}
   Index := First;
   WHILE Index <> ListEnd
   DO
