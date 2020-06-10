@@ -30,10 +30,9 @@ BEGIN{AverageScore}
   WHILE Student < ClassSize
   DO
     BEGIN
-      WRITELN('Enter student name:');
+      WRITE('Enter student name: ');
       REWRITE(StudentName);
       CopyName(INPUT, StudentName);
-      READLN(INPUT);
       RESET(StudentName);
       WRITE('Enter student scores: ');   
       TotalScore := 0;
