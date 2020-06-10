@@ -1,4 +1,6 @@
 PROGRAM Stat(INPUT, OUTPUT);
+CONST
+  MAXINT = 32768;
 VAR
   Min, Max, Sum, Count, Number, Digit: INTEGER;
   Ch: CHAR;
@@ -61,18 +63,14 @@ BEGIN{ReadNumberProgram}
       IF (Number > Max)
       THEN
         Max := Number;
-      IF (Sum + Number <= MAXINT DIV 10) AND (MAXINT - Sum  * 10  >= Number)
+      IF Sum < (MAXINT - Number)
       THEN
         BEGIN
-          IF NOT Overflow
-          THEN
-            BEGIN  
-              Sum := Sum + Number;
-              Count := Count + 1
-            END    
+          Sum := Sum + Number;
+          Count := Count + 1
         END
       ELSE
-        Overflow := TRUE
+        Overflow := TRUE;
     END;
   WRITELN('Min digit - ', Min);
   WRITELN('Max digit - ', Max);
