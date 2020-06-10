@@ -13,7 +13,7 @@ PROCEDURE Insert(VAR Ptr: Tree; Data: CHAR);
 BEGIN{Insert}
   IF Ptr = NIL
   THEN
-    BEGIN {Создаем лист со значением Data} 
+    BEGIN {РЎРѕР·РґР°РµРј Р»РёСЃС‚ СЃРѕ Р·РЅР°С‡РµРЅРёРµРј Data} 
       NEW(Ptr);
       Ptr^.Ch := Data;
       Ptr^.LLink := NIL;
@@ -32,7 +32,7 @@ END;
 PROCEDURE PrintTree(VAR Ptr: Tree);
 BEGIN{PrintTree}
   IF Ptr <> NIL
-  THEN {Печатает поддерево слева, вершину, поддерево справа}
+  THEN {РџРµС‡Р°С‚Р°РµС‚ РїРѕРґРґРµСЂРµРІРѕ СЃР»РµРІР°, РІРµСЂС€РёРЅСѓ, РїРѕРґРґРµСЂРµРІРѕ СЃРїСЂР°РІР°}
     BEGIN
       PrintTree(Ptr^.LLink);
       WRITE(Ptr^.Ch);

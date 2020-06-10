@@ -16,10 +16,10 @@ BEGIN {InsertSort2}
       NEW(NewPtr);
       READ(NewPtr^.Key);
       Prev := NIL;
-      {Поместить NewPtr в надлежащее место}
+      {РџРѕРјРµСЃС‚РёС‚СЊ NewPtr РІ РЅР°РґР»РµР¶Р°С‰РµРµ РјРµСЃС‚Рѕ}
       Curr := FirstPtr;
       Found := FALSE;
-      {Найдем значения Prev и Curr, такие что Prev^.Key <= NewPtr^.Key <= Curr^.Key}
+      {РќР°Р№РґРµРј Р·РЅР°С‡РµРЅРёРµ Prev Рё Curr, С‚Р°РєРёРµ С‡С‚Рѕ Prev^.Key <= NewPtr^.Key <= Curr^.Key}
       WHILE (Curr <> NIL) AND (NOT Found)
       DO
         BEGIN
@@ -39,7 +39,7 @@ BEGIN {InsertSort2}
       ELSE
         Prev^.Next := NewPtr;
     END;
-  {Печать значений начиная с FirstPtr^.Key}
+  {РџРµС‡Р°С‚СЊ Р·РЅР°С‡РµРЅРёР№ РЅР°С‡РёРЅР°СЏ СЃ FirstPtr^.Key}
   NewPtr := FirstPtr;
   WHILE NewPtr <> NIL
   DO
