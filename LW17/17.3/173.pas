@@ -2,8 +2,7 @@ PROGRAM Stat(INPUT, OUTPUT);
 CONST
   MAXINT = 32768;
 VAR
-  Min, Max, Sum, Count, Number, Digit: INTEGER;
-  Ch: CHAR;
+  Min, Max, Sum, Count, Number: INTEGER;
   Overflow: BOOLEAN;
 PROCEDURE ReadDigit(VAR FileIn: TEXT; VAR Digit: INTEGER);
 VAR
@@ -23,8 +22,6 @@ BEGIN{ReadDigit}
   IF (Ch = '9') THEN Digit := 9
 END;{ReadDigit}
 PROCEDURE ReadNumber(VAR FileIn: TEXT; VAR Number: INTEGER);
-CONST
-  MAXINT = 32768;
 VAR
   TempDigit: INTEGER;
 BEGIN{ReadNumber}
